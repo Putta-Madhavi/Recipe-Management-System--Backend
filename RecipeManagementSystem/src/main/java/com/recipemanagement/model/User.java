@@ -1,5 +1,6 @@
 package com.recipemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.util.List;
@@ -28,5 +29,6 @@ public class User {
     private String cookingSkillLevel;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")  
     private List<Review> reviews;
 }

@@ -1,30 +1,38 @@
 package com.recipemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.List;
+
+import java.util.List; // Keep this for List<Review>
 
 @Entity
 @Data
+@Table(name = "recipies") 
 public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-    private String cuisine;         // e.g., Indian, Italian
-    private String mealType;        // e.g., breakfast, lunch, dinner
-    private int cookingTime;        // in minutes
+    private String name;
+    private String cuisine;
+    private String mealType;
+    private int cookingTime;
+    private String category;
 
-    @ElementCollection
-    private List<String> ingredients;   // e.g., ["rice", "onion", "tomato"]
+    // This is for storing ingredients as a single string
+    @Column(length = 1000) 
+    private String ingredients;
 
     @Column(length = 2000)
     private String instructions;
 
-    private String nutritionalInfo;     // e.g., "vegetarian, low-carb, gluten-free"
+    private String nutritionalInfo;
+    private Double averageRating;
+    private String imageUrl;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("recipe")
     private List<Review> reviews;
 }

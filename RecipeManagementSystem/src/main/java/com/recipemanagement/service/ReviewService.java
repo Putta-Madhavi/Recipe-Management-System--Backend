@@ -20,4 +20,12 @@ public class ReviewService {
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
+
+    public List<Review> getReviewsByRecipe(Long recipeId) {
+        return reviewRepository.findByRecipeId(recipeId);
+    }
+
+    public Double getAverageRatingByRecipeId(Long recipeId) {
+        return reviewRepository.getAverageRatingByRecipeId(recipeId);
+    }
 }

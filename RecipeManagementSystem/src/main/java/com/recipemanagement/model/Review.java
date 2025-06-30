@@ -1,5 +1,6 @@
 package com.recipemanagement.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -11,16 +12,16 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int rating; // e.g., 1 to 5
+    private int rating;
     private String comment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"reviews"})
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
+    @JsonIgnoreProperties({"reviews"})
     private Recipe recipe;
-
-    // Getters and Setters
 }

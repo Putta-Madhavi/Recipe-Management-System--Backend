@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@EnableCaching  // ✅ Enable Spring Caching
+@EnableCaching
 public class RecipeManagementSystemApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(RecipeManagementSystemApplication.class, args);
-	}
+ public static void main(String[] args) {
+     SpringApplication.run(RecipeManagementSystemApplication.class, args);
+ }
 }
+
