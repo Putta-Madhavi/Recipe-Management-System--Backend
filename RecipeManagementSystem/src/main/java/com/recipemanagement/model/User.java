@@ -14,8 +14,14 @@ public class User {
     private Long id;
 
     private String name;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
+
+    @Column(unique = true, nullable = true) // <-- THIS LINE IS CRUCIAL
+    private String googleId; // <-- AND THIS FIELD
+
+    private String profilePicture;
 
     @ElementCollection
     private List<String> dietaryPreferences;
@@ -29,6 +35,6 @@ public class User {
     private String cookingSkillLevel;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("user")  
+    @JsonIgnoreProperties("user")    
     private List<Review> reviews;
 }
